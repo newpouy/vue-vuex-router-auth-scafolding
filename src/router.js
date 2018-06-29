@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import Signup from './views/Signup.vue'
 import Login from './views/Login.vue'
 import MyPage from './views/MyPage.vue'
 import Tournaments from './views/Tournaments.vue'
@@ -31,8 +32,8 @@ import store from './store'
 Vue.use(Router)
 
 const requireAuth = () => (from, to, next) => {
-  console.log('rere', store.getters.isAuthenticated)
-  const isAuthenticated = store.getters.isAuthenticated
+  // console.log('rere',from, to, next,store)
+  const isAuthenticated = store.state.isAuthenticated
   if (isAuthenticated) { alert('hi')
     return next()
   }
@@ -45,6 +46,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/signup',
+      name: 'Signup',
+      component: Signup
     },
     {
       path: '/login',

@@ -14,6 +14,6 @@ export default {
   components: {
     TeamsHeader,
     TeamsMine
-  },
+  }
 }
 </script>

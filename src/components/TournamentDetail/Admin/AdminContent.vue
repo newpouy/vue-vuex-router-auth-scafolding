@@ -1,6 +1,6 @@
 <template>
   <div class="l3">
-    AdminContent
+    AdminContent {{ test }}
     <div id="nav">
       <router-link :to="{ name: 'InfoEdit'}">InfoEdit</router-link> |
       <router-link :to="{ name: 'TeamManage'}">TeamManage</router-link> |
@@ -17,7 +17,12 @@ import Vue from 'vue';
 
 export default {
   name: 'TournaDContent',
-  props: {},
+  props: {
+    test: {
+      type: String,
+      default: ''
+    }
+  },
   // data() {},
   computed: {},
   // 컴포넌트가 다른 컴포넌트를 사용할 경우

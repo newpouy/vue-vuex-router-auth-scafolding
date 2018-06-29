@@ -1,7 +1,7 @@
 <template>
   <div class="l2">
     TournaDAdmin
-    <AdminContent/>
+    <AdminContent :test="test"/>
   </div>
 </template>
 
