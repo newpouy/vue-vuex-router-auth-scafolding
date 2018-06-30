@@ -24,10 +24,28 @@ export default {
   },
   // 컴포넌트 메서드 그룹
   watch: {},
-  methods: {},
+  methods: {
+    fetchData () {
+      this.$store.dispatch('test/getProducts')
+    }
+  },
   // 컴포넌트 라이프사이클 메서드 그룹
-  beforeCreate () {},
-  mounted () {}
+  beforeCreate: () => console.log('beforeCreate'),
+  created () {
+    console.log('created')
+    this.fetchData();
+  },
+  beforeMount: () => console.log('beforeMount'),
+  mounted () { 
+    console.log('mounted', this.$store.state.test.products)
+  },
+  beforeUpdate: () => console.log('beforeUpdate'),
+  updated: () => console.log('updated'),
+  activated: () => console.log('activated'),
+  deactivated: () => console.log('deactivated'),
+  beforeDestroy: () => console.log('beforeDestroy'),
+  destroyed: () => console.log('destroyed'),
+  errorCaptured: () => console.log('errorCaptured')
 }
 </script>
 <style lang="scss">
