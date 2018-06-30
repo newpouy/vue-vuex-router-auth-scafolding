@@ -31,54 +31,54 @@
 </template>
 
 <script>
-  export default {
-    name: 'UiInputText',
+export default {
+  name: 'UiInputText',
 
-    props: {
-      label: { type: String },
-      height: { type: String, default: '44px' },
-      password: { type: Boolean, default: false },
-      value: { required: true },
-      placeholder: { type: String, default: 'hk' },
-      error: {
-        type: [String, Boolean],
-        default: false
+  props: {
+    label: { type: String },
+    height: { type: String, default: '44px' },
+    password: { type: Boolean, default: false },
+    value: { required: true },
+    placeholder: { type: String, default: 'hk' },
+    error: {
+      type: [String, Boolean],
+      default: false
+    }
+  },
+
+  methods: {
+    getRandomInt () {
+      let min = 1
+      let max = 1000000000
+      return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+  },
+
+  computed: {
+    inputHeight () {
+      return `height: ${this.height};`
+    },
+    inputClasses () {
+      return {
+        'is-input-error': this.error,
+        'border-radius-start': !this.$slots.before,
+        'border-radius-end': !this.$slots.after
       }
     },
-
-    methods: {
-      getRandomInt () {
-        let min = 1
-        let max = 1000000000
-        return Math.floor(Math.random() * (max - min + 1) + min)
-      }
+    labelId () {
+      return `inputId${this.getRandomInt()}`
     },
-
-    computed: {
-      inputHeight () {
-        return `height: ${this.height};`
-      },
-      inputClasses () {
-        return {
-          'is-input-error': this.error,
-          'border-radius-start': !this.$slots.before,
-          'border-radius-end': !this.$slots.after
-        }
-      },
-      labelId () {
-        return `inputId${this.getRandomInt()}`
-      },
-      inputType () {
-        return this.password ? 'password' : 'text'
-      },
-      listeners () {
-        return {
-          ...this.$listeners,
-          input: event => this.$emit('input', event.target.value)
-        }
+    inputType () {
+      return this.password ? 'password' : 'text'
+    },
+    listeners () {
+      return {
+        ...this.$listeners,
+        input: event => this.$emit('input', event.target.value)
       }
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -150,4 +150,3 @@
     }
   }
 </style>
-

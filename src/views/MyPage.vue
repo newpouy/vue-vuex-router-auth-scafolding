@@ -9,7 +9,7 @@
         <label>Access Log:</label>
         <div v-for="log in accessLog">{{log.userId}}, {{log.createdAt}}</div>
       </div>
-    </div>  
+    </div>
 </template>
 
 <script type="text/babel">
@@ -18,15 +18,15 @@ export default {
   name: 'MyPage',
   components: {
   },
-  data() {
+  data () {
     return {
       user: null,
       accessLog: []
     }
   },
-  created() {
+  created () {
     axios.get('http://localhost:3000/me')
-      .then(({data}) => {console.log('data', data); this.user = data.user, this.accessLog = data.accessLog})
+      .then(({data}) => { console.log('data', data); this.user = data.user, this.accessLog = data.accessLog })
   }
 }
 </script>

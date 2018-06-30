@@ -6,14 +6,14 @@
       <router-link :to="{ name: 'TeamManage'}">TeamManage</router-link> |
       <router-link :to="{ name: 'TournaManage'}">TournaManage</router-link> |
       <router-link :to="{ name: 'Compensation'}">Compensation</router-link> |
-      <router-link :to="{ name: 'MediaManage'}">MediaManage</router-link> 
-    </div>  
+      <router-link :to="{ name: 'MediaManage'}">MediaManage</router-link>
+    </div>
     <router-view/>
   </div>
 </template>
 
 <script>
-import Vue from 'vue';
+import Vue from 'vue'
 
 export default {
   name: 'TournaDContent',
@@ -32,12 +32,11 @@ export default {
   watch: {},
   methods: {},
   // 컴포넌트 라이프사이클 메서드 그룹
-  beforeCreate() {},
-  mounted() {},
+  beforeCreate () {},
+  mounted () {}
 }
 </script>
 
 <style lang="scss" scoped>
 
 </style>
-

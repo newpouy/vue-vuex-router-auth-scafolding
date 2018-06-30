@@ -19,12 +19,11 @@ export default {
   watch: {},
   methods: {},
   // 컴포넌트 라이프사이클 메서드 그룹
-  beforeCreate() {},
-  mounted() {},
+  beforeCreate () {},
+  mounted () {}
 }
 </script>
 
 <style lang="scss" scoped>
 
 </style>
-

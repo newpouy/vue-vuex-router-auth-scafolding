@@ -7,13 +7,13 @@
       <router-link :to="{ name: 'TeamDMember'}">TeamDMember</router-link> |
       <router-link :to="{ name: 'TeamDSchedule'}">TeamDSchedule</router-link> |
       <router-link :to="{ name: 'TeamDRecord'}">TeamDRecord</router-link> |
-    </div>  
+    </div>
     <router-view/>
   </div>
 </template>
 
 <script>
-import Vue from 'vue';
+import Vue from 'vue'
 import TeamDInfo from './TeamDInfo'
 import TeamDFeed from './TeamDFeed'
 import TeamDMember from './TeamDMember'
@@ -37,12 +37,11 @@ export default {
   watch: {},
   methods: {},
   // 컴포넌트 라이프사이클 메서드 그룹
-  beforeCreate() {},
-  mounted() {},
+  beforeCreate () {},
+  mounted () {}
 }
 </script>
 
 <style lang="scss" scoped>
 
 </style>
-

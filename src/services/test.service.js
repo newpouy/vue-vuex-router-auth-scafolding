@@ -6,7 +6,6 @@ import $router from '../router'
 
 import { API_URL } from '../.env'
 
-
 export function getProducts ({email, password}) {
   return new Promise((resolve, reject) => {
     axios.get('http://testapi.76n1.com/api/products')

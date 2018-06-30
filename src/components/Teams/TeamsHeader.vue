@@ -3,14 +3,14 @@
     TeamsHeader <br/>
     <div>
       <router-link :to="{ name: 'TeamGenerate'}">TeamGenerate</router-link> |
-      <router-link :to="{ name: 'TeamSearch'}">TeamSearch</router-link> 
+      <router-link :to="{ name: 'TeamSearch'}">TeamSearch</router-link>
     </div>
     <router-view/>
   </div>
 </template>
 
 <script>
-// import TeamGenerate 
+// import TeamGenerate
 export default {
   name: 'TeamsHeader',
   props: {},
@@ -23,12 +23,11 @@ export default {
   watch: {},
   methods: {},
   // 컴포넌트 라이프사이클 메서드 그룹
-  beforeCreate() {},
-  mounted() {},
+  beforeCreate () {},
+  mounted () {}
 }
 </script>
 
 <style lang="scss" scoped>
 
 </style>
-

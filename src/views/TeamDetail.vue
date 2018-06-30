@@ -13,7 +13,7 @@ export default {
   name: 'TeamDetail',
   components: {
     TeamDHeader,
-    TeamDContent,
-  },
+    TeamDContent
+  }
 }
 </script>

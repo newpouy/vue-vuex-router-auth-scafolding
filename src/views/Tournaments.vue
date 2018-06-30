@@ -11,24 +11,24 @@ Tournaments
 import TournaSearchBox from '@/components/Tournaments/TournaSearchBox.vue'
 import TournaContent from '@/components/Tournaments/TournaContent.vue'
 import TournaSortBox from '@/components/Tournaments/TournaSortBox.vue'
-  export default {
-    name: 'Tournaments',
-    // 컴포넌트 변수 그룹
-    // data() {},
-    computed: {},
-    // 컴포넌트가 다른 컴포넌트를 사용할 경우
-    components: {
-      TournaSearchBox,
-      TournaContent,
-      TournaSortBox
-    },
-    // 컴포넌트 메서드 그룹
-    watch: {},
-    methods: {},
-    // 컴포넌트 라이프사이클 메서드 그룹
-    beforeCreate() {},
-    mounted() {},
-  }
+export default {
+  name: 'Tournaments',
+  // 컴포넌트 변수 그룹
+  // data() {},
+  computed: {},
+  // 컴포넌트가 다른 컴포넌트를 사용할 경우
+  components: {
+    TournaSearchBox,
+    TournaContent,
+    TournaSortBox
+  },
+  // 컴포넌트 메서드 그룹
+  watch: {},
+  methods: {},
+  // 컴포넌트 라이프사이클 메서드 그룹
+  beforeCreate () {},
+  mounted () {}
+}
 </script>
 <style lang="scss">
 .l1  {

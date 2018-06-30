@@ -11,22 +11,22 @@
 </template>
 
 <script>
-  export default {
-    name: 'SpinnerWave',
-    props: {
-      color: {
-        type: String,
-        default: '#bebebe'
-      }
-    },
-    computed: {
-      loadingColor () {
-        return {
-          'background-color': this.color
-        }
+export default {
+  name: 'SpinnerWave',
+  props: {
+    color: {
+      type: String,
+      default: '#bebebe'
+    }
+  },
+  computed: {
+    loadingColor () {
+      return {
+        'background-color': this.color
       }
     }
   }
+}
 </script>
 
 <style scoped lang="scss">

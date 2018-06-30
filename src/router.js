@@ -34,7 +34,8 @@ Vue.use(Router)
 const requireAuth = () => (from, to, next) => {
   // console.log('rere',from, to, next,store)
   const isAuthenticated = store.state.isAuthenticated
-  if (isAuthenticated) { alert('hi')
+  if (isAuthenticated) {
+    alert('hi')
     return next()
   }
   next('/login?returnPath=me')
