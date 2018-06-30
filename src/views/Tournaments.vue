@@ -26,7 +26,7 @@ export default {
   watch: {},
   methods: {
     fetchData () {
-      this.$store.dispatch('test/getProducts')
+      this.$store.dispatch('test/getPosts')
     }
   },
   // 컴포넌트 라이프사이클 메서드 그룹
@@ -37,7 +37,7 @@ export default {
   },
   beforeMount: () => console.log('beforeMount'),
   mounted () { 
-    console.log('mounted', this.$store.state.test.products)
+    console.log('mounted', this.$store.state.test.posts)
   },
   beforeUpdate: () => console.log('beforeUpdate'),
   updated: () => console.log('updated'),
