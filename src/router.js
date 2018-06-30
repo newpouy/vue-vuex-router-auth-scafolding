@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Signup from './views/Signup.vue'
 import Login from './views/Login.vue'
 import MyPage from './views/MyPage.vue'
+import TestPage from './views/TestPage.vue'
 import Tournaments from './views/Tournaments.vue'
 import TournamentDetail from './views/TournamentDetail.vue'
 import TournaDInfo from './components/TournamentDetail/TournaDInfo.vue'
@@ -63,6 +64,11 @@ export default new Router({
       name: 'mypage',
       component: MyPage,
       beforeEnter: requireAuth()
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: TestPage
     },
     {
       path: '/tournaments',

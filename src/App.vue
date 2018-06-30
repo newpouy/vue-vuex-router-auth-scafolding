@@ -5,6 +5,7 @@
       <router-link to="/signup">Signup</router-link> |
       <router-link to="/login">Login</router-link> |
       <router-link to="/mypage">MyPage</router-link> |
+      <router-link to="/test">Test</router-link> |
       <router-link to="/tournaments">Tournaments</router-link> |
       <router-link to="/teams">Teams</router-link>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="">
-Tournaments
+TestPage
     <TournaSearchBox/>
     <TournaSortBox/>
     <TournaContent/>
@@ -8,9 +8,9 @@ Tournaments
 </template>
 
 <script type="text/babel">
-import TournaSearchBox from '@/components/Tournaments/TournaSearchBox.vue'
-import TournaContent from '@/components/Tournaments/TournaContent.vue'
-import TournaSortBox from '@/components/Tournaments/TournaSortBox.vue'
+import TournaSearchBox from '@/components/Test/TournaSearchBox.vue'
+import TournaContent from '@/components/Test/TournaContent.vue'
+import TournaSortBox from '@/components/Test/TournaSortBox.vue'
 export default {
   name: 'Tournaments',
   // 컴포넌트 변수 그룹
@@ -25,13 +25,19 @@ export default {
   // 컴포넌트 메서드 그룹
   watch: {},
   methods: {
+    fetchData () {
+      this.$store.dispatch('test/getPosts')
+    }
   },
   // 컴포넌트 라이프사이클 메서드 그룹
   beforeCreate: () => console.log('beforeCreate'),
   created () {
+    console.log('created')
+    this.fetchData();
   },
   beforeMount: () => console.log('beforeMount'),
   mounted () { 
+    console.log('mounted', this.$store.state.test.posts)
   },
   beforeUpdate: () => console.log('beforeUpdate'),
   updated: () => console.log('updated'),
