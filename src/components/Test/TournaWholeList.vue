@@ -1,7 +1,7 @@
 <template>
   <div class="l2">
     TournaWholeList
-    <div class="item" v-for="post in posts" :key="post.id">
+    <div class="item" v-for="post in filteredPosts" :key="post.id">
       <TournaRow v-bind="post" />
     </div>
   </div>
@@ -16,8 +16,24 @@ export default {
   // data() {},
   computed: {
     ...mapState({
-      posts: state => state.test.posts
-    })
+      posts: state => state.test.posts,
+      searchOptions: state => state.test.searchOptions
+    }),
+    filteredPosts () {
+      console.log('filtered', this.posts, this.searchOptions.userId)
+      if(this.searchOptions.userId == ''){
+        console.log('here')
+        return this.posts
+      } else {
+        return this.posts.filter(el => {
+          return (parseInt(this.searchOptions.userId) === el.userId)
+        })
+      }
+    }
+    // posts () {
+    //   console.log('dd',this.$store.state);
+    //   return this.$store.state.posts
+    // }
   },
   // 컴포넌트가 다른 컴포넌트를 사용할 경우
   components: {

@@ -2,7 +2,9 @@
   <div class="l1">
     TournaSearchBox
     <div>
-      <input type="text" v-on:change="handle" />
+
+      <input v-model="searchWord" placeholder="여기를 수정해보세요">
+<p>메시지: {{ searchWord }}</p>
     </div>
   </div>
 </template>
@@ -11,8 +13,12 @@
 export default {
   name: 'TournaSearchBox',
 
-  props: {},
-  data: {
+  props: {
+  },
+  data () {
+    return {
+      searchWord: ''
+    }
   },
   computed: {},
   // 컴포넌트가 다른 컴포넌트를 사용할 경우
@@ -20,10 +26,14 @@ export default {
   },
   // 컴포넌트 메서드 그룹
   watch: {
+    searchWord: function (newWord) {
+      console.log(newWord)
+      this.$store.commit('test/SET_SEARCH_USER_ID', newWord)
+    }
   },
   methods: {
-    hande: function() {
-      console.log('handle')
+    handle: function() {
+      console.log('handle', this.searchWord)
     }
   },
   // 컴포넌트 라이프사이클 메서드 그룹

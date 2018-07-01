@@ -11,7 +11,7 @@ export default {
 
   props: {
     id: {
-      type: String,
+      type: Number,
       default: ''
     },
     title: { 
@@ -19,7 +19,7 @@ export default {
       default: ''
     },
     userId: {
-      type: String,
+      type: Number,
       default: ''
     }
   },
@@ -35,7 +35,7 @@ export default {
   // 컴포넌트 라이프사이클 메서드 그룹
   beforeCreate () {},
   mounted () {
-    // console.log('mounted', this.body)
+    // console.log('mounted', this)
   }
 }
 </script>
