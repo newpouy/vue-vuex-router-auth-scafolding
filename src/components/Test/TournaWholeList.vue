@@ -2,7 +2,7 @@
   <div class="l2">
     TournaWholeList
     <div class="item" v-for="post in filteredPosts" :key="post.id">
-      <TournaRow v-bind="post" />
+      <TournaRow v-bind="post" @putcomment="putcomment"/>
     </div>
   </div>
 </template>
@@ -51,6 +51,10 @@ export default {
   // 컴포넌트 메서드 그룹
   watch: {},
   methods: {
+    putcomment(payload){
+      console.log(this.$store)
+      this.$store.dispatch('test/putComment',payload)
+    }
   },
   // 컴포넌트 라이프사이클 메서드 그룹
   beforeMount(){

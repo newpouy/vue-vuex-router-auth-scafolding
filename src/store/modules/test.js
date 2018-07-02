@@ -67,7 +67,8 @@ export default {
         })
         .catch(err=>commit('SET_ERROR',err.message))
     },
-    putComment({userId,commentBody,postId}){
+    putComment({commit},payload){
+      let {userId,commentBody,postId} = payload
       return TestService.putComment({userId,commentBody,postId})
         .then(res=>{
           if(res)

@@ -2,7 +2,7 @@
   <div class="l4">
     <p>TournaRow: <span>{{ id }}</span> / <span>{{ userId }}</span></p>
     <p>{{ title }}</p>
-    <TournaComment :id="id" :comments="comments"></TournaComment>
+    <TournaComment :id="id" :comments="comments" @putcomment="putcomment"></TournaComment>
   </div>
 </template>
 
@@ -37,6 +37,9 @@ export default {
   // 컴포넌트 메서드 그룹
   watch: {},
   methods: {
+    putcomment(payload){
+      this.$emit('putcomment',payload)
+    }
   },
   // 컴포넌트 라이프사이클 메서드 그룹
   beforeCreate () {},
