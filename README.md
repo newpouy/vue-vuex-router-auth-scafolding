@@ -6,5 +6,7 @@ router, axios added by yarn
 auth
 
 ------
+````
 yarn install
 yarn serve
+````
