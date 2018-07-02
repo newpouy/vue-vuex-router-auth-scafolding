@@ -5,7 +5,14 @@
     <p>{{ title }}</p>
     <div class="popWrapper">
       <UserPop />
-      <UiModal />
+      <UiModal closeOnOverlay :show.sync="isShownModal" :postDetail="postDetail">
+      <div class="some-modal-content">
+        hi here
+        <div class="buttons">
+          <button @click="submitModalHandler">ok</button>
+        </div>
+      </div>
+    </UiModal>
     </div>
   </div>
 </template>
@@ -36,6 +43,9 @@ export default {
     }
   },
   computed: {
+    postDetail () {
+      return { id: this.id, title: this.title }
+    }
   },
   // 컴포넌트가 다른 컴포넌트를 사용할 경우
   components: {
@@ -47,7 +57,10 @@ export default {
   methods: {
     openPop: function(userId) {
       console.log('',userId)
-    } 
+    },
+    submitModalHandler () {
+      this.isShownModal = false
+    }
   },
   // 컴포넌트 라이프사이클 메서드 그룹
   beforeCreate () {},

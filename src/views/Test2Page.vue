@@ -1,6 +1,6 @@
 <template>
   <div class="">
-TestPage
+Test2Page
     <TournaSearchBox/>
     <TournaSortBox/>
     <TournaContent/>
@@ -8,11 +8,11 @@ TestPage
 </template>
 
 <script type="text/babel">
-import TournaSearchBox from '@/components/Test/TournaSearchBox.vue'
-import TournaContent from '@/components/Test/TournaContent.vue'
-import TournaSortBox from '@/components/Test/TournaSortBox.vue'
+import TournaSearchBox from '@/components/Test2/TournaSearchBox.vue'
+import TournaContent from '@/components/Test2/TournaContent.vue'
+import TournaSortBox from '@/components/Test2/TournaSortBox.vue'
 export default {
-  name: 'Tournaments',
+  name: 'Test2Page',
   // 컴포넌트 변수 그룹
   // data() {},
   computed: {},
@@ -49,37 +49,35 @@ export default {
 }
 </script>
 <style lang="scss">
-%lines-shared {
-  border:solid;
-  border-width:7px;
-}
 .l1  {
-  @extend %lines-shared;
+  border: solid;
   border-color: #464242;
+  border-width: 7px;
 }
 .l2  {
-  @extend %lines-shared;
+  border: solid;
   border-color: #797474;
+  border-width: 7px;
 }
 .l3  {
-  @extend %lines-shared;
+  border: solid;
   border-color: #a9a3a3;
+  border-width: 7px;
 }
 .l4  {
-  @extend %lines-shared;
+  border: solid;
   border-color: #d4cfcf;
+  border-width: 7px;
 }
 .l5  {
-  @extend %lines-shared;
+  border: solid;
   border-color: #e0e2e4;
-}
-.l6 {
-  @extend %lines-shared;
-  border-color:#f3f3f3;
+  border-width: 7px;
 }
 
 .lp  {
-  @extend %lines-shared;
+  border: solid;
   border-color: red;
+  border-width: 7px;
 }
 </style>
