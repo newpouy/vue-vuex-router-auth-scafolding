@@ -34,24 +34,24 @@ class TestService {
   ]
   */
 
- getComments() {
-  return new Promise((resolve, reject) => {
-    axios.get('https://jsonplaceholder.typicode.com/comments')
-      .then(res => {
-        console.log('service getComments', res.data)
-        return resolve(new ResponseWrapper(res, res.data))
-      }).catch(err => reject(new ErrorWrapper(err)))
+  getComments () {
+    return new Promise((resolve, reject) => {
+      axios.get('https://jsonplaceholder.typicode.com/comments')
+        .then(res => {
+          console.log('service getComments', res.data)
+          return resolve(new ResponseWrapper(res, res.data))
+        }).catch(err => reject(new ErrorWrapper(err)))
     })
   }
 
-  putCommment({userId,postId,commentBody}){
-    return new Promise((resolve,reject)=>{
+  putComment ({userId, postId, commentBody}) {
+    return new Promise((resolve, reject) => {
       console.log(`user ${userId} puts comment on post id ${postId}\n: ${commentBody}`)
-      axios.put('https://jsonplaceholder.typicode.com/posts/')
-        .then(res =>{
+      axios.post('https://jsonplaceholder.typicode.com/posts/')
+        .then(res => {
           console.log('service putComment success!')
-          return resolve(new ResponseWrapper(res,res.data))
-        }).catch(err=> reject(new ErrorWrapper(err)))
+          return resolve(new ResponseWrapper(res, res.data))
+        }).catch(err => reject(new ErrorWrapper(err)))
     })
   }
 }

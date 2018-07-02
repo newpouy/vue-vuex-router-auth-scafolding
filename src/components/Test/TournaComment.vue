@@ -29,7 +29,6 @@
     methods:{
       addComment(postId){
         let payload = {postId,commentBody:this.userComment,userId:123}
-        //this.$emit('putcomment',{postId,commentBody:this.userComment,userId:123})
         this.$emit('putcomment',payload)
       }
     }

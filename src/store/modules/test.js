@@ -60,23 +60,25 @@ export default {
       // commit('SET_SEARCH_USER_ID', payload)
     },
 
-    getComments({commit}){
+    getComments ({commit}) {
       return TestService.getComments()
-        .then(res=>{
-          commit('SET_COMMENT',res.data)
+        .then(res => {
+          commit('SET_COMMENT', res.data)
         })
-        .catch(err=>commit('SET_ERROR',err.message))
+        .catch(err => commit('SET_ERROR', err.message))
     },
-    putComment({commit},payload){
-      let {userId,commentBody,postId} = payload
-      return TestService.putComment({userId,commentBody,postId})
-        .then(res=>{
-          if(res)
+
+    putComment ({commit}, payload) {
+      let {userId, commentBody, postId} = payload
+      return TestService.putComment({userId, commentBody, postId})
+        .then(res => {
+          if (res) {
             this.getComments()
-          else
-            throw "error with comment"
+          } else {
+            throw 'server did not respond for commenting'
+          }
         })
-        .catch(err=>commit('SET_ERROR',err.message))
+        .catch(err => commit('SET_ERROR', err.message))
     }
   }
 }

@@ -52,13 +52,12 @@ export default {
   watch: {},
   methods: {
     putcomment(payload){
-      console.log(this.$store)
       this.$store.dispatch('test/putComment',payload)
     }
   },
   // 컴포넌트 라이프사이클 메서드 그룹
   beforeMount(){
-    console.log('store', this.$store)
+    console.log('loading up store', this.$store)
   },
   beforeCreate () {},
   mounted () {}
