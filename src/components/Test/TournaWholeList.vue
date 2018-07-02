@@ -17,18 +17,27 @@ export default {
   computed: {
     ...mapState({
       posts: state => state.test.posts,
+      comments: state => state.test.comments,
       searchOptions: state => state.test.searchOptions
     }),
     filteredPosts () {
       console.log('filtered', this.posts, this.searchOptions.userId)
+      let posts
       if(this.searchOptions.userId == ''){
         console.log('here')
-        return this.posts
+        posts = this.posts
       } else {
-        return this.posts.filter(el => {
+        posts = this.posts.filter(el => {
           return (parseInt(this.searchOptions.userId) === el.userId)
         })
       }
+      //linking comments to computed post lists
+      return posts.map(el=>{
+        return {...el,
+                comments: this.comments.filter(
+                  elComment=>elComment.postId === el.id
+                )}
+      })
     }
     // posts () {
     //   console.log('dd',this.$store.state);
@@ -41,8 +50,12 @@ export default {
   },
   // 컴포넌트 메서드 그룹
   watch: {},
-  methods: {},
+  methods: {
+  },
   // 컴포넌트 라이프사이클 메서드 그룹
+  beforeMount(){
+    console.log('store', this.$store)
+  },
   beforeCreate () {},
   mounted () {}
 }

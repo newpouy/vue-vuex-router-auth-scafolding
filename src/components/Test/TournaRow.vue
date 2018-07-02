@@ -1,11 +1,14 @@
 <template>
   <div class="l4">
-    TournaRow: <span>{{ id }}</span> / <span>{{ userId }}</span></p>
+    <p>TournaRow: <span>{{ id }}</span> / <span>{{ userId }}</span></p>
     <p>{{ title }}</p>
+    <TournaComment :id="id" :comments="comments"></TournaComment>
   </div>
 </template>
 
 <script>
+import TournaComment from './TournaComment.vue'
+
 export default {
   name: 'TournaRow',
 
@@ -21,17 +24,20 @@ export default {
     userId: {
       type: Number,
       default: ''
-    }
+    },
+    comments:Array
   },
   // data() {},
   computed: {
   },
   // 컴포넌트가 다른 컴포넌트를 사용할 경우
   components: {
+    TournaComment
   },
   // 컴포넌트 메서드 그룹
   watch: {},
-  methods: {},
+  methods: {
+  },
   // 컴포넌트 라이프사이클 메서드 그룹
   beforeCreate () {},
   mounted () {

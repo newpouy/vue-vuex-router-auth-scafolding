@@ -6,6 +6,7 @@ export default {
     loading: false,
     error: false,
     posts: [],
+    comments: [],
     pagination: {
       limit: 10,
       page: 0,
@@ -26,6 +27,9 @@ export default {
       console.log('mut data', data)
       state.posts = data
     },
+    SET_COMMENT (state,data) {
+      state.comments = data
+    },
     SET_PAGINATION (state, payload) {
       state.pagination = {
         page: payload.page || state.pagination.page,
@@ -43,7 +47,7 @@ export default {
   actions: {
     getPosts ({state, commit}, payload) {
       commit('SET_LOADING', true)
-      return TestService.getPosts()
+      return TestService.getPosts() //<-API에서 값을 불러오는 부분
         .then(response => {
           console.log(response)
           commit('SET_POST', response.data)
@@ -54,6 +58,24 @@ export default {
     setSearchOptions ({state, commit}, payload) {
       console.log(payload)
       // commit('SET_SEARCH_USER_ID', payload)
+    },
+
+    getComments({commit}){
+      return TestService.getComments()
+        .then(res=>{
+          commit('SET_COMMENT',res.data)
+        })
+        .catch(err=>commit('SET_ERROR',err.message))
+    },
+    putComment({userId,commentBody,postId}){
+      return TestService.putComment({userId,commentBody,postId})
+        .then(res=>{
+          if(res)
+            this.getComments()
+          else
+            throw "error with comment"
+        })
+        .catch(err=>commit('SET_ERROR',err.message))
     }
   }
 }
