@@ -41,21 +41,33 @@
       addComment(postId){
         const tempId = uuidv4()
         let payload = { postId,
+                        id:uuidv4(),
                         body:this.userComment,
                         name:'abcdef',
                         tempId,
-                        email:'test@1234.com' }
+                        email:'test@1234.com',
+                        retry:0 }
         this.userComment = ''
         this.$emit('putcomment',payload)
         const timeoutMax = 2000 //댓글 전송 실패시 타임아웃 = 2.0초
+        const retryMax = 5//댓글 전송 실패시 재시도 = 최대 5번
         const _this = this
-        setTimeout(function(){
+        setInterval(function(){
           _this.comments.map(el=>{
             if(el.tempId){
               if(el.tempId === tempId){
-                el.failed = true
+                if(payload.retry < retryMax){
+                  el.failed = true
+                  payload.retry ++
+                  _this.$emit('putcomment', payload)
+                }else{
+                  //mark will be left permanent after max retry
+                  //this is necessary for saving up future resources
+                  clearInterval()
+                }
               }
             }
+            if(!el.tempId) { clearInterval() }
             return el
           })
           _this.$forceUpdate()

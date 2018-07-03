@@ -51,6 +51,8 @@ class TestService {
       axios.post('https://jsonplaceholder.typicode.com/posts/')
         .then(res => {
           console.log('service putComment success!')
+          // 경회형님께: 이 부분에서 아래의 주석을 풀어서 에러를 발생시키면 됩니다.
+          // throw new Error('오류가 발생하였습니다')
           return resolve(new ResponseWrapper(res, res.data))
         }).catch(err => reject(new ErrorWrapper(err)))
     })

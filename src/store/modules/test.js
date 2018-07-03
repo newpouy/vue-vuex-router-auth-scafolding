@@ -84,21 +84,20 @@ export default {
         .catch(err => commit('SET_ERROR', err.message))
     },
 
-    putComment ({commit}, payload, retry = 0) {
+    putComment ({commit}, payload, retry = false) {
       console.log(payload)
       // WARNING : Payload is edited by following code
-      let tempData = {
-        ...payload,
-        id: uuidv4() }
+      let tempData = {...payload}
       const {tempId} = tempData
-      commit('ADD_COMMENT_SINGLE', tempData)
+
+      console.log('retry?', tempData.retry)
+      if (tempData.retry === 0) {
+        commit('ADD_COMMENT_SINGLE', tempData)
+      }
 
       return TestService.putComment(payload) // modified tempData is not used, because it doesn't actually post anything
         .then(res => {
           if (res) {
-            // 기회형님께: 아래의 두 줄을 제거하면
-            // 댓글이 제대로 달리지 않았을 때 보이는
-            // 전송실패 뱃지가 딜립니다.(코드리뷰에 참고)
             // remove the two lines of code below to see timeout errors
             commit('TEMP_COMMENT_REMOVAL', tempId)
             this.getComments({commit})
@@ -108,16 +107,6 @@ export default {
         })
         .catch(err => {
           commit('SET_ERROR', err.message)
-          // 실패에 대한 재시도는 단순히 재귀처리하였습니다.
-          const timespanRetry = 1500 // 서버 과부하를 막기 위하여 시간차를 줍니다.
-          const maxRetry = 5 // 재시도는 최대 5번만 시도됩니다. 이후에는 영구 오류처리합니다.
-          const _this = this
-          if (retry < maxRetry) {
-            setTimeout(function () {
-              console.log(`commenting failed...retrying comments ${retry} out of ${maxRetry}`)
-              _this.putComment({commit}, payload, retry++)
-            }, timespanRetry)
-          }
         })
     }
   }
