@@ -7,7 +7,7 @@
       </div>
       <div>
         <label>Access Log:</label>
-        <div v-for="log in accessLog">{{log.userId}}, {{log.createdAt}}</div>
+        <div v-for="(log,idx) in accessLog" :key="idx">{{log.userId}}, {{log.createdAt}}</div>
       </div>
     </div>
 </template>
