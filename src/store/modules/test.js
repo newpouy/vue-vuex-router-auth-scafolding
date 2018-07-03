@@ -84,7 +84,7 @@ export default {
         .catch(err => commit('SET_ERROR', err.message))
     },
 
-    putComment ({commit}, payload, retry = false) {
+    putComment ({commit}, payload) {
       console.log(payload)
       // WARNING : Payload is edited by following code
       let tempData = {...payload}
