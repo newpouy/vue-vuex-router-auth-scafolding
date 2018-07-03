@@ -1,4 +1,5 @@
 import TestService from '@/services/test.service'
+import uuidv4 from 'uuid/v4'
 //
 export default {
   namespaced: true,
@@ -14,7 +15,8 @@ export default {
     },
     searchOptions: {
       userId: ''
-    }
+    },
+    userQueue: []
   },
   getters: {
   },
@@ -27,7 +29,7 @@ export default {
       console.log('mut data', data)
       state.posts = data
     },
-    SET_COMMENT (state,data) {
+    SET_COMMENT (state, data) {
       state.comments = data
     },
     SET_PAGINATION (state, payload) {
@@ -42,6 +44,20 @@ export default {
     },
     SET_LOADING (state, data) {
       state.loading = data
+    },
+    ADD_COMMENT_SINGLE (state, data) {
+      // TODO:add comment goes here
+      state.comments.push(data)
+    },
+    TEMP_COMMENT_REMOVAL (state, data) {
+      state.comments.map(el => {
+        if (el.tempId) {
+          if (el.tempId === data) {
+            delete el.tempId
+          }
+        }
+        return el
+      })
     }
   },
   actions: {
@@ -69,16 +85,30 @@ export default {
     },
 
     putComment ({commit}, payload) {
-      let {userId, commentBody, postId} = payload
-      return TestService.putComment({userId, commentBody, postId})
+      console.log(payload)
+      // WARNING : Payload is edited by following code
+      let tempData = {
+        ...payload,
+        id: uuidv4(),
+        time: moment().unix() }
+      const {tempId} = tempData
+      commit('ADD_COMMENT_SINGLE', tempData)
+
+      return TestService.putComment(payload) // modified tempData is not used, because it doesn't actually post anything
         .then(res => {
           if (res) {
-            this.getComments()
+            // 기회형님께: 아래의 두 줄을 제거하면
+            // 댓글이 제대로 달리지 않았을 때 보이는
+            // 전송실패 뱃지가 딜립니다.
+            // remove the two lines of code below to see errors
+            commit('TEMP_COMMENT_REMOVAL', tempId)
+            this.getComments({commit})
           } else {
             throw 'server did not respond for commenting'
           }
         })
         .catch(err => commit('SET_ERROR', err.message))
+
     }
   }
 }

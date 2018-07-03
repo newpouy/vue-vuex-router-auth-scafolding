@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { ResponseWrapper, ErrorWrapper } from './util'
 
-
 class TestService {
   getPosts () {
     return new Promise((resolve, reject) => {
@@ -44,9 +43,9 @@ class TestService {
     })
   }
 
-  putComment ({userId, postId, commentBody}) {
+  putComment ({name, postId, body, email}) {
     return new Promise((resolve, reject) => {
-      console.log(`user ${userId} puts comment on post id ${postId}\n: ${commentBody}`)
+      console.log(`user ${name}(${email}) puts comment on post id ${postId}\n: ${body}`)
       axios.post('https://jsonplaceholder.typicode.com/posts/')
         .then(res => {
           console.log('service putComment success!')
