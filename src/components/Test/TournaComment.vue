@@ -1,7 +1,7 @@
 <template>
   <div class="l5">
     <div v-for="(elComment, idx) in comments" :key="idx" class="comment">
-      <span v-if="elComment.failed" class="failbadge">failed - server does not respond</span>
+      <span v-if="elComment.failed" class="failbadge">failed - server does not respond({{elComment.retry}})</span>
       <p><a :href="'mailto:' + elComment.email">{{elComment.name}}</a> - {{elComment.body}}</p>
     </div>
     <div class="commentEditor">
@@ -40,8 +40,9 @@
     methods:{
       addComment(postId){
         const tempId = uuidv4()
+        const _id = uuidv4() //for securing unique name
         let payload = { postId,
-                        id:uuidv4(),
+                        id:_id,
                         body:this.userComment,
                         name:'abcdef',
                         tempId,
@@ -60,14 +61,18 @@
                   el.failed = true
                   payload.retry ++
                   _this.$emit('putcomment', payload)
+                  _this.$forceUpdate()
                 }else{
                   //mark will be left permanent after max retry
                   //this is necessary for saving up future resources
                   clearInterval()
                 }
               }
+
+              //since tempId does not exist for successful upload,
+              //it uses el.id for clearing unnecessary intervals
+              if(el.id === _id && !el.failed){ clearInterval() }
             }
-            if(!el.tempId) { clearInterval() }
             return el
           })
           _this.$forceUpdate()
