@@ -27,6 +27,7 @@ export default {
   methods: {
     fetchData () {
       this.$store.dispatch('test/getPosts')
+      this.$store.dispatch('test/getComments')
     }
   },
   // 컴포넌트 라이프사이클 메서드 그룹
@@ -49,35 +50,37 @@ export default {
 }
 </script>
 <style lang="scss">
+%lines-shared {
+  border:solid;
+  border-width:7px;
+}
 .l1  {
-  border: solid;
+  @extend %lines-shared;
   border-color: #464242;
-  border-width: 7px;
 }
 .l2  {
-  border: solid;
+  @extend %lines-shared;
   border-color: #797474;
-  border-width: 7px;
 }
 .l3  {
-  border: solid;
+  @extend %lines-shared;
   border-color: #a9a3a3;
-  border-width: 7px;
 }
 .l4  {
-  border: solid;
+  @extend %lines-shared;
   border-color: #d4cfcf;
-  border-width: 7px;
 }
 .l5  {
-  border: solid;
+  @extend %lines-shared;
   border-color: #e0e2e4;
-  border-width: 7px;
+}
+.l6 {
+  @extend %lines-shared;
+  border-color:#f3f3f3;
 }
 
 .lp  {
-  border: solid;
+  @extend %lines-shared;
   border-color: red;
-  border-width: 7px;
 }
 </style>
