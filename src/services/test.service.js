@@ -18,6 +18,8 @@ class TestService {
   * ->components/Test/TournaWholeList.vue
   * ->components/Test/TournaRow.vue
   * ->components/Test/TournaComment.vue
+  * from vuex
+  * ->store/modules/test.js
   */
 
   /*

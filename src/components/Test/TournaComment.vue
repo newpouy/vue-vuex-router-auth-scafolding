@@ -1,8 +1,8 @@
 <template>
   <div class="l5">
     <div v-for="(elComment, idx) in comments" :key="idx" class="comment">
+      <span v-if="elComment.failed" class="failbadge">failed - server does not respond</span>
       <p><a :href="'mailto:' + elComment.email">{{elComment.name}}</a> - {{elComment.body}}</p>
-      <span v-if="elComment.failed" class="failbadge">failed!</span>
     </div>
     <div class="commentEditor">
       <textarea v-model="userComment" placeholder="write your own reply here"></textarea>
@@ -67,7 +67,7 @@
 
 <style lang="scss" scoped>
 .failbadge{
-  padding:2px;
+  padding:3px;
   color:white;
   background-color:palevioletred;
   font-size:0.5rem;
