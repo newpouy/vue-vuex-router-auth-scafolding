@@ -3,8 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './registerServiceWorker'
+import SpinnerWave from './components/SpinnerWave.vue'
 
 Vue.config.productionTip = false
+
+Vue.component('spinner', SpinnerWave)
 
 new Vue({
   router,
