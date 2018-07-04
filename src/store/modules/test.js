@@ -38,6 +38,18 @@ export default {
     },
     SET_LOADING (state, data) {
       state.loading = data
+    },
+    ADD_POST_SINGLE (state, data) {
+      console.log('posting an article...', data)
+      state.posts.push(data)
+    },
+    TEMP_POST_REMOVAL (state, data) {
+      state.posts.map(el => {
+        if (el.temp && el.tempId === data) {
+          el.temp = false
+        }
+        return el
+      })
     }
   },
   actions: {
@@ -54,6 +66,24 @@ export default {
     setSearchOptions ({state, commit}, payload) {
       console.log(payload)
       // commit('SET_SEARCH_USER_ID', payload)
+    },
+    putPost ({commit}, payload) {
+      return new Promise((resolve, reject) => {
+        let modifiedPayload = {...payload, id: Math.floor(Math.random() * 65525)}
+        commit('ADD_POST_SINGLE', modifiedPayload)
+        const {tempId} = payload
+        TestService.putPost(modifiedPayload)
+          .then(res => {
+            // after successful upload, delete the temp tag
+            commit('TEMP_POST_REMOVAL', tempId)
+            // then return success
+            resolve(tempId)
+          })
+          .catch(err => {
+            commit('SET_ERROR', err.message)
+            reject(new Error('글 포스팅 중 에러가 발생하였습니다'))
+          })
+      })
     }
   }
 }

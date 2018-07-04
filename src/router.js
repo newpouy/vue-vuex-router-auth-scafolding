@@ -28,6 +28,7 @@ import TeamDFeed from './components/TeamDetail/TeamDFeed.vue'
 import TeamDMember from './components/TeamDetail/TeamDMember.vue'
 import TeamDSchedule from './components/TeamDetail/TeamDSchedule.vue'
 import TeamDRecord from './components/TeamDetail/TeamDRecord.vue'
+import Write from './views/Write.vue'
 import store from './store'
 
 Vue.use(Router)
@@ -69,6 +70,11 @@ export default new Router({
       path: '/test',
       name: 'test',
       component: TestPage
+    },
+    {
+      path: '/write',
+      name: 'write',
+      component: Write
     },
     {
       path: '/tournaments',
