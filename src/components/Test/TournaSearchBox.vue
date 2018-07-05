@@ -3,7 +3,7 @@
     TournaSearchBox
     <div>
 
-      <input v-model="searchWord" placeholder="여기를 수정해보세요">
+      <input id="search_word" v-model="searchWord" placeholder="여기를 수정해보세요">
 <p>메시지: {{ searchWord }}</p>
     </div>
   </div>
