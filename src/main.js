@@ -4,7 +4,12 @@ import router from './router'
 import store from './store'
 import './registerServiceWorker'
 
-Vue.config.productionTip = false
+import Modal from '@/components/CommonUI/Modal.vue';
+
+
+Vue.config.productionTip = false;
+
+Vue.component('Modal', Modal);
 
 new Vue({
   router,
