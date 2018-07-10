@@ -28,6 +28,7 @@ import TeamDFeed from './components/TeamDetail/TeamDFeed.vue'
 import TeamDMember from './components/TeamDetail/TeamDMember.vue'
 import TeamDSchedule from './components/TeamDetail/TeamDSchedule.vue'
 import TeamDRecord from './components/TeamDetail/TeamDRecord.vue'
+import ModalTest from '@/pages/ModalTest.vue';
 import store from './store'
 
 Vue.use(Router)
@@ -74,6 +75,11 @@ export default new Router({
       path: '/tournaments',
       name: 'tournaments',
       component: Tournaments
+    },
+    {
+      path: '/modaltest',
+      name: 'modaltest',
+      component: ModalTest,
     },
     {
       path: '/tournaments/:id',

@@ -31,10 +31,14 @@
 
           <div class="modal-footer">
             <div @click="$emit('confirm')">
-              {{type === DIALOG.TYPE_CONFIRM ? "confirm" : "YES"}}
+              {{type === DIALOG.TYPE_CONFIRM ||
+               type === DIALOG.TYPE_CONFIRMCANCEL ? "confirm" : "YES"}}
             </div>
-            <div v-if="type===DIALOG.TYPE_YESNO" @click="$emit('no')">
-              NO
+            <div @click="secondary"
+              v-if="type === DIALOG.TYPE_YESNO ||
+            type === DIALOG.TYPE_CONFIRMCANCEL">
+              {{type === DIALOG.TYPE_YESNO ? "NO" : ''}}
+              {{type === DIALOG.TYPE_CONFIRMCANCEL ? "cancel" : ''}}
             </div>
           </div>
         </div>
@@ -46,36 +50,57 @@
 
 import DIALOG from '@/components/CommonUI/MODALSETTING.js';
 
-export default {
-  data() {
-    return {
-      DIALOG,
-    };
+function data() {
+  return {
+    DIALOG,
+  };
+}
+
+const props = {
+  zIndex: {
+    type: Number,
+    default: 99,
   },
-  props: {
-    zIndex: {
-      type: Number,
-      default: 99,
-    },
-    type: {
-      type: Number,
-      default: DIALOG.TYPE_CONFIRM,
-    },
-    options: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
+  type: {
+    type: Number,
+    default: DIALOG.TYPE_CONFIRM,
   },
-  methods: {
-    callClose() {
-      if (!this.options.includes(DIALOG.OPTION_NOT_DISMISSIBLE)) {
-        this.$emit('close');
-      }
+  options: {
+    type: Array,
+    default() {
+      return [];
     },
   },
 };
+
+function callClose() {
+  if (!this.options.includes(DIALOG.OPTION_NOT_DISMISSIBLE)) {
+    this.$emit('close');
+  }
+}
+
+function secondary() {
+  switch (this.type) {
+    case DIALOG.TYPE_YESNO:
+      this.$emit('no');
+      break;
+    case DIALOG.TYPE_CONFIRMCANCEL:
+      this.$emit('cancel');
+      break;
+    default:
+      // currently empty
+  }
+}
+
+export default {
+  data,
+  props,
+  methods: {
+    callClose,
+    secondary,
+  },
+};
+
 </script>
 <style lang="scss" scoped>
 .modal-mask {
