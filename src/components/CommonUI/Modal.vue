@@ -30,11 +30,11 @@
           </div>
 
           <div class="modal-footer">
-            <div @click="$emit('confirm')">
+            <div @click="$emit('yes')">
               {{type === DIALOG.TYPE_CONFIRM ||
                type === DIALOG.TYPE_CONFIRMCANCEL ? "confirm" : "YES"}}
             </div>
-            <div @click="secondary"
+            <div @click="$emit('no')"
               v-if="type === DIALOG.TYPE_YESNO ||
             type === DIALOG.TYPE_CONFIRMCANCEL">
               {{type === DIALOG.TYPE_YESNO ? "NO" : ''}}
@@ -79,25 +79,11 @@ function callClose() {
   }
 }
 
-function secondary() {
-  switch (this.type) {
-    case DIALOG.TYPE_YESNO:
-      this.$emit('no');
-      break;
-    case DIALOG.TYPE_CONFIRMCANCEL:
-      this.$emit('cancel');
-      break;
-    default:
-      // currently empty
-  }
-}
-
 export default {
   data,
   props,
   methods: {
     callClose,
-    secondary,
   },
 };
 

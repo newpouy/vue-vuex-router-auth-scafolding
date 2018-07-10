@@ -90,5 +90,6 @@ Show the modal with v-if, and edit the content with 'slot' option. As of now, th
 |-|-|
 |OPTION_NOT_DISMISSIBLE|clicking anywhere in dialog doesn't emit close() event.
 |OPTION_XCLOSE|shows X close button on the right top|
-|TYPE_CONFIRM|shows confirm button only(default)|
-|TYPE_YESNO|shows yes(emits @confirm) and no(emits @no) button|
+|TYPE_CONFIRM|shows confirm(@emits yes) button only(default)|
+|TYPE_YESNO|shows yes(emits @yes) and no(emits @no) button|
+|TYPE_CONFIRMCANCEL|shows confirm and cancel(emits @no) button|
