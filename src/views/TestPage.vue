@@ -11,6 +11,7 @@ TestPage
 import TournaSearchBox from '@/components/Test/TournaSearchBox.vue'
 import TournaContent from '@/components/Test/TournaContent.vue'
 import TournaSortBox from '@/components/Test/TournaSortBox.vue'
+
 export default {
   name: 'Tournaments',
   // 컴포넌트 변수 그룹

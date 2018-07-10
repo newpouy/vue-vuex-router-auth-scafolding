@@ -1,0 +1,6 @@
+export default {
+  OPTION_NOT_DISMISSIBLE: 0,
+  TYPE_CONFIRM: 1,
+  TYPE_YESNO: 2,
+  OPTION_XCLOSE: 3,
+};

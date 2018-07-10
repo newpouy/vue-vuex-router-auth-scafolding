@@ -10,3 +10,88 @@ auth
 yarn install
 yarn serve
 ````
+
+---
+
+This feature utilizes eslint-plugin-vue & airbnb coding style eslint plugin
+
+**for future reference, here's how to install eslint + vue plugin + airbinb plugin from scratch**
+```
+// install eslint-vue plguin
+yarn add --save-dev eslint eslint-plugin-vue
+// install babel eslint
+yarn add eslint@4.x babel-eslint@8 -D
+// install eslint airbnb plugin
+yarn add -D eslint eslint-config-airbnb-base eslint-plugin-import
+// create ".eslintrc.js" on project folder and paste below
+module.exports = {
+ root: true,
+ parserOptions: {
+   parser: 'babel-eslint',
+   sourceType: 'module'
+ },
+ env: {
+   browser: true,
+ },
+ extends: [
+   'plugin:vue/essential',
+   'airbnb-base'
+ ],
+}
+// last but not least, open  User Settings from VSCode Command Palette and add these settings.
+{
+   "eslint.validate": [
+       "javascript",
+       "javascriptreact",
+       {
+           "language": "vue",
+           "autoFix": true
+       }
+   ],
+}
+```
+---
+**Modal Component How to Use**
+
+Include modal's global setting and preload it from vue component
+(if modal is already registered as a global component in `main.js`)
+```
+// component*.vue
+<script>
+import ...
+import DIALOG from '@/components/CommonUI/MODALSETTING.js';
+...
+export default {
+  data(){
+    return{
+      DIALOG
+      ...
+    };
+  },
+}
+```
+
+Then use it in the modal's template.
+
+Show the modal with v-if, and edit the content with 'slot' option. As of now, the dialog only has header and body slot.
+
+```
+// component*.vue
+<template>
+  <Modal v-if="isDialogShown"
+  @confirm="isDialogShown=false" @no="isDialogShown=false"
+  :options="[DIALOG.OPTION_*]" :type="DIALOG.TYPE_*" >
+    <div slot="header">here goes the head</div>
+    <div slot="body">here goes the message</div>
+  </Modal>
+```
+
+|option/types|effect|
+|-|-|
+|OPTION_NOT_DISMISSIBLE|clicking anywhere in dialog doesn't emit close() event.
+|-|-|
+|OPTION_XCLOSE|shows X close button on the right top|
+|-|-|
+|TYPE_CONFIRM|shows confirm button only(default)|
+|-|-|
+|TYPE_YESNO|shows yes(emits @confirm) and no(emits @no) button|
