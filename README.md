@@ -53,6 +53,10 @@ module.exports = {
 ---
 **Modal Component How to Use**
 
+to check sample, go to /modaltest/
+
+pages/ModalTest.vue
+
 Include modal's global setting and preload it from vue component
 (if modal is already registered as a global component in `main.js`)
 ```
